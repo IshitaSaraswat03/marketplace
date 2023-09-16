@@ -1,8 +1,8 @@
 import { postData } from "../frontend_utils/fetch_api.js";
 
-const navToggler = document.querySelector('.nav-toggler');
-const navMenu = document.querySelector('.site-navbar ul');
-const navLinks = document.querySelectorAll('.site-navbar a');
+const navToggler = document.querySelector(".nav-toggler");
+const navMenu = document.querySelector(".site-navbar ul");
+const navLinks = document.querySelectorAll(".site-navbar a");
 
 // load all event listners
 allEventListners();
@@ -10,20 +10,20 @@ allEventListners();
 // functions of all event listners
 function allEventListners() {
   // toggler icon click event
-  navToggler.addEventListener('click', togglerClick);
+  navToggler.addEventListener("click", togglerClick);
   // nav links click event
-  navLinks.forEach( elem => elem.addEventListener('click', navLinkClick));
+  navLinks.forEach((elem) => elem.addEventListener("click", navLinkClick));
 }
 
 // togglerClick function
 function togglerClick() {
-  navToggler.classList.toggle('toggler-open');
-  navMenu.classList.toggle('open');
+  navToggler.classList.toggle("toggler-open");
+  navMenu.classList.toggle("open");
 }
 
 // navLinkClick function
 function navLinkClick() {
-  if(navMenu.classList.contains('open')) {
+  if (navMenu.classList.contains("open")) {
     navToggler.click();
   }
 }
@@ -39,45 +39,46 @@ async function validate_user() {
   }
 }
 
-document.getElementById('nav_logout').addEventListener('click',async()=>{
-  const result=await postData('/logout',{});
-  console.log(result)
- await validate_user()
-})
+document.getElementById("nav_logout").addEventListener("click", async () => {
+  const result = await postData("/logout", {});
+  console.log(result);
+  await validate_user();
+});
 validate_user();
 
-function createNotification(message,type,time) {
-  const notification = document.createElement('div');
+function createNotification(message, type, time) {
+  const notification = document.createElement("div");
   notification.classList.add(type);
   notification.textContent = message;
 
-  document.getElementById('notificationContainer').appendChild(notification);
+  document.getElementById("notificationContainer").appendChild(notification);
 
   setTimeout(() => {
     notification.remove();
   }, time);
 }
 
-function open_product(id){
-  return ()=>{   
-    location.href = `/product/webpage/${id}`
-  }
+function open_product(id) {
+  return () => {
+    location.href = `/product/webpage/${id}`;
+  };
 }
-function add_to_cart(id){
-  return async()=>{
-    const result = await postData('/add_to_cart',{"items" : [{"productId" : id,"quantity" :1} ]})
-    if(result.validate != null && result.validate==0){
-      createNotification('Authenticate Yourself',"alert_notification",3000);
+function add_to_cart(id) {
+  return async () => {
+    const result = await postData("/add_to_cart", {
+      items: [{ productId: id, quantity: 1 }],
+    });
+    if (result.validate != null && result.validate == 0) {
+      createNotification("Authenticate Yourself", "alert_notification", 3000);
+    } else {
+      createNotification("Product Added", "success_notification", 3000);
     }
-    else{
-      createNotification("Product Added","success_notification",3000);
-    }
-  }
+  };
 }
-async function fetch_products(id,url) {
-  const response= await fetch(url)
-  const result = await response.json()
-  const products = result.products
+async function fetch_products(id, url) {
+  const response = await fetch(url);
+  const result = await response.json();
+  const products = result.products;
   for (let i = 0; i < products.length; i++) {
     const star = `<i class="fas fa-star"></i>`;
     document.getElementById(id).innerHTML += `
@@ -90,19 +91,20 @@ async function fetch_products(id,url) {
           ${star.repeat(products[i].Rating)}
       </div>
       <h4>$${products[i].Price}</h4></div>
-  <i id="${products[i]._id}cart" class="fa-sharp fa-solid fa-cart-shopping cart" style="width: 40px;height: 20px;"></i>
+  <i id="${
+    products[i]._id
+  }cart" class="fa-sharp fa-solid fa-cart-shopping cart" style="width: 40px;height: 20px;"></i>
 </div>`;
   }
   for (let i = 0; i < products.length; i++) {
     if (products.includes(products[i])) {
-    let element1 = document.getElementById(`${products[i]._id}`)
-    element1.addEventListener("click", open_product(products[i]._id));
-    let element2 = document.getElementById(`${products[i]._id}cart`)
-    element2.addEventListener("click", add_to_cart(products[i]._id));
+      let element1 = document.getElementById(`${products[i]._id}`);
+      element1.addEventListener("click", open_product(products[i]._id));
+      let element2 = document.getElementById(`${products[i]._id}cart`);
+      element2.addEventListener("click", add_to_cart(products[i]._id));
     }
   }
 }
-fetch_products("prod1",'/trending_products');
-fetch_products("prod2",'/products/category/Mens Shirt');
+fetch_products("prod1", "/trending_products");
+fetch_products("prod2", "/products/category/Mens Shirt");
 // fetch_products("prod2",'/products');
-

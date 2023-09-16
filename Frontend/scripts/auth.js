@@ -2,8 +2,6 @@ import {  login_listner, resend_listner, signup_listner, validate_user} from '..
 
 validate_user()
 
-
-
 // When user enter credentials and click on login btn for verifying
 document.getElementById('login').addEventListener('click', login_listner)
 // When user enter credentials and click on signup btn for verifying
