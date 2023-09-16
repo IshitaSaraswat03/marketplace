@@ -28,7 +28,7 @@ header {
 }
 
 .heading {
-  color: #219890;
+  color: #008000;
 }
 
 .title {
@@ -49,7 +49,7 @@ header {
   height: 60px;
   width: 300px;
   margin: 20px auto;
-  box-shadow: 10px 10px 30px #ccecea;
+  box-shadow: 10px 10px 30px #e1fad6;
   border-radius: 50px;
   display: flex;
   justify-content: space-around;
@@ -72,8 +72,8 @@ header {
   border-radius: 50px;
   background-image: linear-gradient(
     to right,
-    #219890,
-    #219890
+    #008000,
+    #008000
   );
   position: absolute;
   top: 20px;
@@ -136,8 +136,8 @@ header {
   border-radius: 50px;
   background-image: linear-gradient(
     to right,
-	#219890,
-    #219890
+	#008000,
+    #008000
   );
   font-size: 22px;
   border: none;

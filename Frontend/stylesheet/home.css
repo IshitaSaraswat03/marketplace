@@ -428,7 +428,7 @@ body {
 }
 
 #banner button:hover {
-  background: #088178;
+  background: #008000;
   color: #fff;
 }
 
@@ -475,8 +475,8 @@ body {
 }
 
 #sm-banner .banner-box:hover button {
-  background: #088178;
-  border: 1px solid #088178;
+  background: #008000;
+  border: 1px solid #008000;
 }
 
 #banner3 {
@@ -565,7 +565,7 @@ body {
  }
 
  #newsletter button{
-  background-color: #088178;
+  background-color: #008000;
   color: #fff;
   white-space: nowrap;
   border-top-left-radius: 0;
@@ -986,7 +986,7 @@ body {
 
  /* About Page*/
  #page-header.about-header{
-  background-image: url("../img/about/banner.png");
+  background-image: url("../img/about/banner.jpg");
  }
 
  #about-head{
@@ -1465,7 +1465,7 @@ text-align: left;
   border: 0;
   margin-top: 20px;
   padding: 6px 20px;
-  background-color: #088178;
+  background-color: #008000;
   color: #fff;
   font-size: 20px;
   border-radius: 3px;
